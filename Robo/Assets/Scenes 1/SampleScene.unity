@@ -623,7 +623,7 @@ GameObject:
   - component: {fileID: 816303849}
   - component: {fileID: 816303848}
   - component: {fileID: 816303847}
-  m_Layer: 6
+  m_Layer: 3
   m_Name: "Cen\xE1rio"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10253,6 +10253,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8272084341959834324, guid: 986904fd4dcb6714591c57c5b2dc1762, type: 3}
+      propertyPath: pisavel.m_Bits
+      value: 72
+      objectReference: {fileID: 0}
+    - target: {fileID: 8272084341959834324, guid: 986904fd4dcb6714591c57c5b2dc1762, type: 3}
+      propertyPath: camadaChao.m_Bits
+      value: 72
+      objectReference: {fileID: 0}
     - target: {fileID: 8272084341959834325, guid: 986904fd4dcb6714591c57c5b2dc1762, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -10301,6 +10309,10 @@ PrefabInstance:
       propertyPath: m_SortingOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8272084341959834327, guid: 986904fd4dcb6714591c57c5b2dc1762, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 6200000, guid: f30c1b0e5f950cc4495276b315e21bfb, type: 2}
     - target: {fileID: 8272084341959834330, guid: 986904fd4dcb6714591c57c5b2dc1762, type: 3}
       propertyPath: m_Name
       value: Robo

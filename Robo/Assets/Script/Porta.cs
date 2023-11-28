@@ -38,8 +38,8 @@ public class Porta : MonoBehaviour
     {
         anim.SetBool("Abrindo", false);
     }
-    //void Teleportar()
-    //{
-    //    player.transform.position = new Vector2(this.transform.position.x, this.transform.position.y);
-    //}
+    void Teleportar()
+    {
+        player.transform.position = new Vector2(this.transform.position.x, this.transform.position.y);
+    }
 }
