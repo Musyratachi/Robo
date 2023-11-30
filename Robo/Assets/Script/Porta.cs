@@ -40,6 +40,7 @@ public class Porta : MonoBehaviour
     }
     void Teleportar()
     {
-        player.transform.position = new Vector2(this.transform.position.x, this.transform.position.y);
+        
+        //player.transform.position = new Vector2(this.transform.position.x, this.transform.position.y);
     }
 }
