@@ -7,11 +7,11 @@ public class Player : MonoBehaviour
 {
     Rigidbody2D rbPlayer;
     Animator anim;
-    Interurptor interurptor;
     float Horizontal;
     bool olhandoDireita = true;
     bool noChao = false;
-    GameObject Interruptor;
+    int contagemDePulo = 0;
+    GameObject Interagir;
     [SerializeField] LayerMask camadaChao;
     [SerializeField] float forcaPulo = 350f;
     [SerializeField] Transform detectaChao;
@@ -23,32 +23,44 @@ public class Player : MonoBehaviour
     {
         rbPlayer = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
-        interurptor = GetComponent<Interurptor>();
     }
 
     void Update()
     {
         noChao = Physics2D.OverlapCircle(detectaChao.position, 0.2f, camadaChao);
+        if (noChao)
+        {
+            contagemDePulo = 2;
+        }
         anim.SetBool("noChao", noChao);
-        if (Input.GetButtonDown("Jump") && noChao)
+        if (Input.GetButtonDown("Jump") && contagemDePulo > 0)
         {
             rbPlayer.AddForce(Vector2.up * forcaPulo);
+            contagemDePulo--;
         }
         anim.SetFloat("Horizontal", Horizontal);
+        Horizontal = Input.GetAxis("Horizontal");
+        GerenciarFlip();
         if (Input.GetKeyDown(KeyCode.E))
         {
-            if (Interruptor.CompareTag("Switch"))
+            if (Interagir.CompareTag("Switch"))
             {
-                Interruptor.GetComponent<Interurptor>().Destrancar();
+                Interagir.GetComponent<Interurptor>().Destrancar();
+            }
+            if (Interagir.CompareTag("Placa"))
+            {
+                Interagir.GetComponent<Placa>().Interagir();
+            }
+            if (Interagir.CompareTag("Porta"))
+            {
+                Interagir.GetComponent<Porta>().Teleportar(this.transform);
             }
         }
     }
 
     private void FixedUpdate()
     {
-        Horizontal = Input.GetAxis("Horizontal");
         rbPlayer.velocity = new Vector2(Horizontal * 8, rbPlayer.velocity.y);
-        GerenciarFlip();
     }
 
     void Flip()
@@ -74,14 +86,13 @@ public class Player : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Switch"))
+        if (collision.gameObject.CompareTag("Switch") || collision.gameObject.CompareTag("Placa") || collision.gameObject.CompareTag("Porta"))
         {
-            Debug.Log("Funcionou");
-            Interruptor = collision.gameObject;
+            Interagir = collision.gameObject;
         }
         else
         {
-            Interruptor = null;
+            Interagir = null;
         }
     }
     void InstanciarRobo()
